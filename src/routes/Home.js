@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Movie from '../components/Movie'
 import "./Home.css"
+import './loading_icon.css';
 class Home extends React.Component {
     state = {
         isLoading: true,
@@ -21,12 +22,18 @@ class Home extends React.Component {
             <section className="container">
                 {isLoading ? (
                     <div className="loader">
-                        <span className="loader_text">Loading...</span>
+                        <div class="loadingio-spinner-spin-8vfsm2ltrnr"><div class="ldio-5mhk44i8zo3">
+                            <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
+                        </div></div>
+                        <div className="loader_text">Loading...</div>
                     </div>
-                ) : (
-                        <div className="movies">
-                            {movies.map(movie => (
-                                <Movie key={movie.id} {...movie} />))}
+                ) : (   
+                        <div className="home">
+                            <h1 id="head">Movies</h1>
+                            <div className="movies">
+                                {movies.map(movie => (
+                                    <Movie key={movie.id} {...movie} />))}
+                            </div>
                         </div>
                     )}
             </section>

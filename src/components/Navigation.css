@@ -12,15 +12,6 @@
     border-radius: 5px;
 }
 
-@media screen and (max-width: 1090px) {
-    .nav {
-        left: initial;
-        top: initial;
-        bottom: 0px;
-        width: 100%;
-    }
-}
-
 .nav a {
     text-decoration: none;
     color: #0008fc;
@@ -30,6 +21,21 @@
     font-weight: 600;
 }
 
+.nav a:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1090px) {
+    .nav {
+        left: initial;
+        top: 0px;
+        bottom: initial;
+        flex-direction: column;
+        width: 100%;
+    }
     .nav a:not(:last-child) {
         margin-bottom: 20px;
     }
+}
+
+

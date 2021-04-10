@@ -8,7 +8,7 @@ const Movie = ({ id, year, title, summary, medium_cover_image, genres }) => {
         <Link to={{
             pathname: `/movie/${id}`,
             state: { year, title, summary, genres, medium_cover_image }
-        }} style={{ textDecoration: 'none'}}>
+        }} style={{ textDecoration: 'none', color: 'inherit'}}>
             <div className="movie">
                 <img src={medium_cover_image} alt={title} title={title} />
                 <div className="movie__data">

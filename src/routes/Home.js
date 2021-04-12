@@ -22,7 +22,7 @@ class Home extends React.Component {
             <section className="container">
                 {isLoading ? (
                     <div className="loader">
-                        <div class="loadingio-spinner-spin-8vfsm2ltrnr"><div class="ldio-5mhk44i8zo3">
+                        <div className="loadingio-spinner-spin-8vfsm2ltrnr"><div className="ldio-5mhk44i8zo3">
                             <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
                         </div></div>
                         <div className="loader_text">Loading...</div>

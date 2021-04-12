@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\public",
-    "\\src"
+    "\\src",
+    "\\src\\components",
+    "\\src\\routes"
   ],
-  "SelectedNode": "\\src\\Movies.js",
+  "SelectedNode": "\\src\\routes\\Search.js",
   "PreviewInSolutionExplorer": false
 }

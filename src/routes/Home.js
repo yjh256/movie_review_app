@@ -1,13 +1,15 @@
-import React from 'react'
+﻿import React from 'react'
 import axios from 'axios'
-import Movie from '../components/Movie'
 import "./Home.css"
-import './loading_icon.css';
+import Movies from '../components/Movies';
+import Loading from '../components/Loading';
+import Error from '../components/Error';
 
 class Home extends React.Component {
     state = {
         isLoading: true,
-        movies: []
+        movies: [],
+        isError: false
     };
     getMovies = async () => {
         const SERVICE_KEY = 'N971848DE614S7CF3946';
@@ -19,9 +21,10 @@ class Home extends React.Component {
                 }
             });
             const movies = Data[0].Result;
-            this.setState({ movies, isLoading: false })
+            this.setState({ movies, isLoading: false });
 
         } catch (error) {
+            this.setState({ isError: true });
             console.log(error);
         }
     }
@@ -30,26 +33,24 @@ class Home extends React.Component {
         this.getMovies();
     }
     render() {
-        const { isLoading, movies } = this.state;
+        const { isLoading, movies, isError } = this.state;
         return (
             <section className="container">
-                {isLoading ? (
-                    <div className="loader">
-                        <div className="loadingio-spinner-spin-8vfsm2ltrnr"><div className="ldio-5mhk44i8zo3">
-                            <div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div>
-                        </div></div>
-                        <div className="loader_text">Loading...</div>
+                {isError ? (
+                    <div className="error-page">
+                        <Error />
                     </div>
-                ) : (   
+                ) : (isLoading ? (
+                        <div className="loader_page" >
+                            <Loading />
+                        </div>
+                    ) : (
                         <div className="home">
                             <h1 id="head">Movies</h1>
-                            <div className="movies">
-                                {movies.map((movie, i) => (
-                                    <Movie key={movie.movieSeq} {...movie} />))
-                                }
-                            </div>
+                            <Movies movies={movies} />
                         </div>
-                    )}
+                    )
+                )}
             </section>
         )
     }

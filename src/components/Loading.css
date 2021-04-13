@@ -1,3 +1,13 @@
+.loader {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 300;
+}
+
 @keyframes ldio-5mhk44i8zo3 {
     0% {
         opacity: 1;

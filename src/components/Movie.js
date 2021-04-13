@@ -3,22 +3,21 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import "./Movie.css";
 
-const Movie = ({ id, year, title, summary, medium_cover_image, genres }) => {
+const Movie = ({ movieSeq, prodYear, title, plots, posters, genre }) => {
     return (
         <Link to={{
-            pathname: `/movie/${id}`,
-            state: { year, title, summary, genres, medium_cover_image }
-        }} style={{ textDecoration: 'none', color: 'inherit'}}>
+            pathname: `/movie/${movieSeq}`,
+            state: { prodYear, title, plots, posters, genre }
+        }} style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="movie">
-                <img src={medium_cover_image} alt={title} title={title} />
+                <img src={posters.split('|')[0]} onError={(e) => {
+                    e.target.src =  process.env.PUBLIC_URL + "/images/no-image-icon-0.jpg"; e.target.onError = null}} alt={title} title={title} />
                 <div className="movie__data">
                     <h3 className="movie__title">{title}</h3>
-                    <h5 className="movie__year">{year}</h5>
-                    <ul className="movie__genres">{genres.map((genre, i) =>
-                        <li key={i} className="genres__genre">{genre}</li>
-                    )}
-                    </ul>
-                    <p className="movie__summary">{summary.slice(0, 140)}...</p>
+                    <h5 className="movie__year">{prodYear}</h5>
+                    <div className="movie__genres">{genre}
+                    </div>
+                    <p className="movie__summary">{plots.plot[0].plotText.slice(0, 140)}...</p>
                 </div>
             </div>
         </Link>
@@ -26,12 +25,12 @@ const Movie = ({ id, year, title, summary, medium_cover_image, genres }) => {
 }
 
 Movie.propTypes = {
-    id: PropTypes.number.isRequired,
-    year: PropTypes.number.isRequired,
+    movieSeq: PropTypes.string.isRequired,
+    prodYear: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    summary: PropTypes.string.isRequired,
-    medium_cover_image: PropTypes.string.isRequired,
-    genres: PropTypes.arrayOf(PropTypes.string).isRequired
+    plot: PropTypes.string,
+    posters: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired
 }
 
 export default Movie;

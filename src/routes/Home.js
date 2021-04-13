@@ -3,14 +3,27 @@ import axios from 'axios'
 import Movie from '../components/Movie'
 import "./Home.css"
 import './loading_icon.css';
+
 class Home extends React.Component {
     state = {
         isLoading: true,
         movies: []
     };
     getMovies = async () => {
-        const { data: { data: { movies } } } = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
-        this.setState({ movies, isLoading: false });
+        const SERVICE_KEY = 'N971848DE614S7CF3946';
+        try {
+            const { data: { Data } } = await axios.get('http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp', {
+                params: {
+                    collection: 'kmdb_new2',
+                    ServiceKey: SERVICE_KEY
+                }
+            });
+            const movies = Data[0].Result;
+            this.setState({ movies, isLoading: false })
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     componentDidMount() {
@@ -31,8 +44,9 @@ class Home extends React.Component {
                         <div className="home">
                             <h1 id="head">Movies</h1>
                             <div className="movies">
-                                {movies.map(movie => (
-                                    <Movie key={movie.id} {...movie} />))}
+                                {movies.map((movie, i) => (
+                                    <Movie key={movie.movieSeq} {...movie} />))
+                                }
                             </div>
                         </div>
                     )}

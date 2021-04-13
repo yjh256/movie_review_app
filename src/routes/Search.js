@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import axios from 'axios';
-import NewMovie from '../components/NewMovie'
+import Movie from '../components/Movie'
 import './Search.css';
 
 class Search extends React.Component {
@@ -61,12 +61,12 @@ class Search extends React.Component {
                 <div>
                     <div className="input_div">
                         <h1>영화 검색</h1>
-                        <img src="/images/no-image-icon-0.jpg" alt="test"/>
-                        <input className="input_search" type="text" value={this.state.value} onChange={this.handleChange} placeholder="영화 검색" />
+                                <input className="input_search" type="text" value={this.state.value} onChange={this.handleChange} placeholder="찾고 싶은 영화 제목을 입력하세요" />
+                                <button className="input_submit_button" onClick={onsubmit}>검색</button>
                     </div>
                     <div className="movies">
                                 {movies.map((movie, i) => (
-                                    <NewMovie key={movie.movieSeq} {...movie} />))
+                                    <Movie key={movie.movieSeq} {...movie} />))
                         }
                     </div>
                 </div>

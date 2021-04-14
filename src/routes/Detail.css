@@ -21,12 +21,12 @@
     color: #2c2c2c;
 }
 
-.detail .detail__genres {
+.detail .detail__director, .detail__actor, .detail__rating {
     text-align: center;
     margin-top: 10px;
 }
 
-.detail .detail__summary {
+.detail .more_info {
     padding: 0 10%;
 }
 

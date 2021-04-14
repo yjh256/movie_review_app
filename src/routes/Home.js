@@ -1,56 +1,79 @@
-﻿import React from 'react'
-import axios from 'axios'
-import "./Home.css"
-import Movies from '../components/Movies';
-import Loading from '../components/Loading';
+﻿import React from 'react';
+import axios from 'axios';
+import './Home.css';
 import Error from '../components/Error';
+import Loading from '../components/Loading';
+import Movies from '../components/Movies';
+import SearchForm from '../components/SearchForm';
 
 class Home extends React.Component {
     state = {
         isLoading: true,
         movies: [],
+        value: "",
         isError: false
     };
-    getMovies = async () => {
-        const SERVICE_KEY = 'N971848DE614S7CF3946';
-        try {
-            const { data: { Data } } = await axios.get('http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp', {
-                params: {
-                    collection: 'kmdb_new2',
-                    ServiceKey: SERVICE_KEY
-                }
-            });
-            const movies = Data[0].Result;
-            this.setState({ movies, isLoading: false });
 
+    getSearchMovie = async () => {
+        const ID_KEY = 'rqrSvoQGkSvTUJp0yaQC';
+        const SECRET_KEY = 'SkksIxbjKL'
+        const search = this.state.value;
+        try {
+            if (search === "") {
+                this.setState({ movies: [], isLoading: false })
+            } else {
+                const { data: { items } } = await axios.get('/v1/search/movie.json', {
+                    params: {
+                        query: search,
+                        display: 20
+                    },
+                    headers: {
+                        'X-Naver-Client-Id': ID_KEY,
+                        'X-Naver-Client-Secret': SECRET_KEY
+                    }
+                });
+
+                this.setState({ movies: items, isLoading: false })
+            }
         } catch (error) {
             this.setState({ isError: true });
             console.log(error);
         }
-    }
+    };
 
     componentDidMount() {
-        this.getMovies();
+        this.getSearchMovie();
+    };
+
+    handleChange = (e: any) => {
+        this.setState({ value: e.target.value });
+    };
+
+    handleSubmit = (e: any) => {
+        e.preventDefault();
+        this.getSearchMovie();
     }
     render() {
-        const { isLoading, movies, isError } = this.state;
+        const { movies, isLoading, isError } = this.state;
         return (
             <section className="container">
-                {isError ? (
+                <h1 id="head">환영합니다!</h1>
+                <h4 id="subhead">영화를 검색해 보세요!</h4>
+                { isError ? (
                     <div className="error-page">
                         <Error />
                     </div>
-                ) : (isLoading ? (
-                        <div className="loader_page" >
-                            <Loading />
-                        </div>
-                    ) : (
-                        <div className="home">
-                            <h1 id="head">Movies</h1>
-                            <Movies movies={movies} />
-                        </div>
+                ) : (isLoading ?
+                    (<div className="loader">
+                        <Loading />
+                    </div>
+                    ) : (<div className="search-result">
+                        <SearchForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} value={this.state.value} />
+                        <Movies movies={movies} />
+                    </div>
                     )
-                )}
+                    )
+                }
             </section>
         )
     }

@@ -20,13 +20,10 @@
     color: #2c2c2c;
 }
 
-.movie .movie__genres {
-    list-style: none;
+.movie .movie__directors, .movie__actors, .movie__rating {
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 5px 0px;
+    margin: 10px 0px;
 }
 
 .movie__genres li,

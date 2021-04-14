@@ -7,8 +7,8 @@ const Movies = ({ movies }) => {
         return <div className="no_result">검색 결과가 없습니다.</div>
     }
     return <div className="movies">
-        {movies.map((movie, i) => (
-            <Movie key={movie.movieSeq} {...movie} />))
+        {movies.map(movie => (
+            <Movie {...movie} key={movie.link} />))
         }
     </div>
 }

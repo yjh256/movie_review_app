@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import "./Movie.css";
 
 const Movie = (props) => {
-    console.log(props);
     const editTitle = (title) => {
         return title
             .replace("</b>", "")

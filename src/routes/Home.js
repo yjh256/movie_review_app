@@ -22,7 +22,7 @@ class Home extends React.Component {
             if (search === "") {
                 this.setState({ movies: [], isLoading: false })
             } else {
-                const { data: { items } } = await axios.get('/v1/search/movie.json', {
+                const { data: { items } } = await axios.get('/api/v1/search/movie.json', {
                     params: {
                         query: search,
                         display: 20

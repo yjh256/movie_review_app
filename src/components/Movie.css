@@ -1,3 +1,20 @@
+.movie {
+    animation-duration: 1s;
+    animation-name: slidein;
+}
+
+@keyframes slidein {
+    from {
+        opacity: 0;
+        margin-top: 50px;
+    }
+
+    to {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
 .movie img {
     position: relative;
     top: -50px;
@@ -11,12 +28,13 @@
 .movie .movie__title,
 .movie .movie__year {
     margin: 0;
+    font-size: 20px;
     font-weight: 300;
 }
 
 .movie .movie__title {
     margin-bottom: 5px;
-    font-size: 24px;
+    font-size: 36px;
     color: #2c2c2c;
 }
 
@@ -24,10 +42,10 @@
     padding: 0;
     margin: 0;
     margin: 10px 0px;
+    font-size: 24px;
 }
 
 .movie__genres li,
 .movie .movie__year {
     margin-right: 10px;
-    font-size:14px;
 }

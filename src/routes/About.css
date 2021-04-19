@@ -8,6 +8,20 @@
     width: 100%;
     max-width: 400px;
     font-weight: 300;
+    animation-duration: 1s;
+    animation-name: about-slidein;
+}
+
+@keyframes about-slidein {
+    from {
+        opacity: 0;
+        margin-top: 250px;
+    }
+
+    to {
+        opacity: 1;
+        margin-top: 300px;
+    }
 }
 
     .about__container span:first-child {

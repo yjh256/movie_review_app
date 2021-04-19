@@ -24,12 +24,14 @@
 .detail .detail__director, .detail__actor, .detail__rating {
     text-align: center;
     margin-top: 10px;
+    font-size: 24px;
 }
 
 .detail .more_info {
     padding: 0 10%;
+    font-size: 24px;
 }
 
 .detail .detail__year {
-    font-size: 14px;
+    font-size: 20px;
 }

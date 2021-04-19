@@ -12,13 +12,14 @@ const Movie = (props) => {
     };
     const editDirector = (director) => {
         const directors = director.split("|");
+        if (directors.length <= 1) return "알 수 없음";
         return directors[0];
     }
     const editActor = (actor) => {
         const actors = actor.split("|");
         actors.splice(Math.min(actors.length - 1, 4));
         if (actors.length == 0) {
-            return "" 
+            return "알 수 없음" 
         }
         return actors.join(", ");
     }
